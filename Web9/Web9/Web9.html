@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Деркач Максим Андрійович" />
+    <meta name="description" content="Лабораторна робота 9" />
+    <title>Медіа-бібліотека</title>
+    <style>
+      /* ЗАГАЛЬНІ НАЛАШТУВАННЯ */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef2f5; /* Світлий м'який фон */
+        color: #4a5568;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      /* КОНТЕЙНЕР (КАРТКА) */
+      .container {
+        background: #ffffff;
+        padding: 40px;
+        width: 100%;
+        max-width: 700px;
+        border-radius: 20px; /* Сильніше заокруглення */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* М'яка, розсіяна тінь */
+        transition: transform 0.3s ease;
+      }
+
+      /* ЗАГОЛОВКИ */
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2d3748;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      h3 {
+        margin-bottom: 15px;
+        color: #4a5568;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-left: 4px solid #667eea; /* Декоративна лінія зліва */
+        padding-left: 10px;
+      }
+
+      /* ЛІНІЯ РОЗДІЛЕННЯ */
+      hr {
+        border: 0;
+        height: 2px;
+        background: #edf2f7;
+        margin: 35px 0;
+      }
+
+      /* ФОРМИ ТА СПИСКИ ВИБОРУ */
+      form {
+        margin-bottom: 20px;
+      }
+
+      select {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 15px;
+        border-radius: 12px;
+        border: 2px solid #e2e8f0;
+        background-color: #f7fafc;
+        color: #2d3748;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        /* Кастомна стрілочка */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+      }
+
+      select:hover {
+        border-color: #cbd5e0;
+      }
+
+      select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        background-color: #fff;
+      }
+
+      /* МЕДІА ПЛЕЄРИ */
+      audio,
+      video {
+        width: 100%;
+        outline: none;
+        border-radius: 12px;
+        display: block;
+      }
+
+      audio {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      video {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .section {
+        padding: 5px 0;
+      }
+    </style>
+    <script>
+      function playAudio() {
+        const audioSelect = document.getElementById("audioSelect");
+        const audioPlayer = document.getElementById("audioPlayer");
+        const videoPlayer = document.getElementById("videoPlayer");
+        audioPlayer.src = audioSelect.value;
+        audioPlayer.play();
+        videoPlayer.pause();
+      }
+      function playVideo() {
+        const videoSelect = document.getElementById("videoSelect");
+        const videoPlayer = document.getElementById("videoPlayer");
+        const audioPlayer = document.getElementById("audioPlayer");
+        videoPlayer.src = videoSelect.value;
+        videoPlayer.play();
+        audioPlayer.pause();
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Медіа-бібліотека</h2>
+      <hr />
+      <div class="section">
+        <h3>Аудіо</h3>
+        <form>
+          <select id="audioSelect" onchange="playAudio()">
+            <option value="audio1.mp3" selected>Пісня 1</option>
+            <option value="audio2.mp3">Пісня 2</option>
+            <option value="audio3.mp3">Пісня 3</option>
+          </select>
+        </form>
+        <audio id="audioPlayer" controls autoplay loop>
+          <source src="audio1.mp3" type="audio/mp3" />
+        </audio>
+      </div>
+      <hr />
+      <div class="section">
+        <h3>Відео</h3>
+        <form>
+          <select id="videoSelect" onchange="playVideo()">
+            <option value="video1.mp4" selected>Відео 1</option>
+            <option value="video2.mp4">Відео 2</option>
+            <option value="video3.mp4">Відео 3</option>
+          </select>
+        </form>
+        <video id="videoPlayer" controls width="640">
+          <source src="video1.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </body>
+</html>
